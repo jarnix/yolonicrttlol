@@ -32,6 +32,12 @@ class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+    if(!this.userService.isConnected()) {
+        let nav = this.app.getComponent('nav');
+        nav.setRoot(ConnectionPage);
+    }
+
       // The platform is now ready. Note: if this callback fails to fire, follow
       // the Troubleshooting guide for a number of possible solutions:
       //

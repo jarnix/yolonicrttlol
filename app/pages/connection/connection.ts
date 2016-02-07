@@ -7,20 +7,17 @@ import {UserService} from '../../services/user';
 })
 export class ConnectionPage {
 
-   textealacon : string;
-   localStore : LocalStorage;
-   username : string;
-   password: string;
+  username: string;
+  password: string;
 
   constructor(private nav: NavController, navParams: NavParams, private userService: UserService) {
-    this.localStore = new Storage(LocalStorage);
-    this.localStore.get('username').then(username => this.username = username);
-    this.localStore.get('password').then(password => this.password = password);
+    this.userService.getRememberedCredentials('username').then(r => this.username = r).catch(err => console.log(err));
+    this.userService.getRememberedCredentials('password').then(r => this.password = r).catch(err => console.log(err));
   }
 
   submit() {
-    this.localStore.set('username', this.username);
-    this.localStore.set('password', this.password);
+
+    this.userService.rememberCredentials(this.username, this.password);
 
     let alert = Alert.create({
       title: 'Login failed',
