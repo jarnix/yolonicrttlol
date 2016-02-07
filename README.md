@@ -1,6 +1,6 @@
 vérifier la connexion
 
-si pas connecté => afficher l'écran de connexion
+~~si pas connecté => afficher l'écran de connexion~~
 
 quand connecté => afficher l'écran principal
 

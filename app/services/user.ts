@@ -11,7 +11,7 @@ export class UserService {
   baseUrl: string = "https://plateforme.eurecia.com/eurecia/";
   localStore : Storage = new Storage(LocalStorage);
 
-  constructor(http:Http) {
+  constructor(private http : Http) {
 
   }
 
@@ -19,9 +19,27 @@ export class UserService {
       return this.localStore.get(which);
   }
 
-  rememberCredentials(username: string, password: string) {
-    this.localStore.set('username', username);
-    this.localStore.set('password', password);
+  setCredentials(username: string, password: string) {
+    this.username = username;
+    this.password = password;
+  }
+
+  rememberCredentials() {
+    this.localStore.set('username', this.username);
+    this.localStore.set('password', this.password);
+  }
+
+  checkLogin() {
+    let params = 'email=' + encodeURIComponent(this.username) + '&password=' + encodeURIComponent(this.password) + '&isStayConnected=&btnsubmit=clicked';
+    this.http.get('/')
+    .subscribe(
+        data => {
+              console.log(data);
+            },
+          err => console.log(err),
+            () => console.log('request done')
+    );
+    // this.http.post(this.baseUrl + 'login.do', params).subscribe(response => console.log(response));
   }
 
   isConnected() {
