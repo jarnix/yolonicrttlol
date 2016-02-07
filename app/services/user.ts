@@ -5,6 +5,9 @@ import {Http} from 'angular2/http';
 export class UserService {
   items:Array<any>;
 
+  login: string;
+  password: string;
+
   constructor(http:Http) {
 
   }

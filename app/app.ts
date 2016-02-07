@@ -1,6 +1,6 @@
 import {App, IonicApp, Platform} from 'ionic-framework/ionic';
 
-// import {UserService} from './models/user';
+import {UserService} from './services/user';
 
 import {HelloIonicPage} from './pages/hello-ionic/hello-ionic';
 import {ConnectionPage} from './pages/connection/connection';
@@ -11,15 +11,15 @@ import {Type} from 'angular2/core';
 
 @App({
   templateUrl: 'build/app.html',
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/,
-  providers: [ /* UserService */ ]
+  config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
+  providers: [ UserService ]
 })
 class MyApp {
   // make HelloIonicPage the root (or first) page
   rootPage: Type = HelloIonicPage;
   pages: Array<{title: string, component: Type}>;
 
-  constructor(private app: IonicApp, private platform: Platform) {
+  constructor(private app: IonicApp, private platform: Platform, private userService: UserService) {
 
     this.initializeApp();
 
