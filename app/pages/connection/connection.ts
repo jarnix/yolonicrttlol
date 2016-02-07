@@ -18,10 +18,10 @@ export class ConnectionPage {
     this.localStore.get('password').then(password => this.password = password);
   }
 
-  checkLoginAndPassword() {
+  submit() {
     this.localStore.set('username', this.username);
     this.localStore.set('password', this.password);
-    
+
     let alert = Alert.create({
       title: 'Login failed',
       subTitle: 'Are you drunk?',
