@@ -8,7 +8,7 @@ export class UserService {
 
   username: string;
   password: string;
-  baseUrl: string = "https://plateforme.eurecia.com/eurecia/";
+  baseUrl: string = "/api";
   localStore : Storage = new Storage(LocalStorage);
 
   constructor(private http : Http) {
@@ -31,7 +31,7 @@ export class UserService {
 
   checkLogin() {
     let params = 'email=' + encodeURIComponent(this.username) + '&password=' + encodeURIComponent(this.password) + '&isStayConnected=&btnsubmit=clicked';
-    this.http.get('/')
+    this.http.post(this.baseUrl, params)
     .subscribe(
         data => {
               console.log(data);

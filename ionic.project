@@ -1,0 +1,10 @@
+{
+  "name": "proxy",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://plateforme.eurecia.com/eurecia"
+    }
+  ]
+}
